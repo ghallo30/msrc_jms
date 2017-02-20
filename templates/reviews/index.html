@@ -1,0 +1,23 @@
+{% extends 'reviews/extend_base.html' %}  
+
+{% block content %}
+  <div id="content">
+    <div class="col-md-12" style="padding:10px;">
+    {% include 'reviews/nav_bar.html' %}
+          <div class="panel box-v1">
+            <div class="panel-heading bg-white border-none">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center padding-0">
+                <h1>{{page_title}}</h1>
+              	
+              </div>
+
+            </div>
+            <div class="panel-body">
+              {% include 'reviews/rev_article_list.html' %}
+            </div>
+          </div>
+          
+
+    </div>
+  </div>  
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load security %}
+{%  block left_sidebar %}
+
+<li class="ripple">
+	<a class="tree-toggle nav-header">
+		<span class="icons icon-docs"></span> Messages
+		<span class="fa-angle-right fa right-arrow text-right"></span>
+	</a>
+	<ul class="nav nav-list tree">
+		<li><a href="/reviewers/{{request.user.id|encrypts:"encrypt"}}/creat-email-templates">Compose</a></li>
+		<li><a href="/reviewers/{{request.user.id|encrypts:"encrypt"}}/view-email-templates">Inbox</a></li>
+		<li><a href="/reviewers/{{request.user.id|encrypts:"encrypt"}}/view-email-templates">Drafts</a></li>
+		</ul>
+</li>
+
+{% endblock left_sidebar %}

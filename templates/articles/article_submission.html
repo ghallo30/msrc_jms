@@ -1,0 +1,73 @@
+{% extends 'articles/extend_base.html' %}  
+
+{% block content %}
+<!-- start: Content -->
+
+  <div id="content">
+     <div class="panel box-shadow-none content-header">
+          <div class="panel-body">
+            <div class="col-md-12">
+                <h3 class="animated fadeInLeft">Submission Metadata</h3>
+            </div>
+          </div>
+      </div>
+      
+    <div id="art_submisson" class="col-md-12" style="background: #ffffff;">
+        {% include 'articles/submission_step.html' %}
+        <!-- <div id="tab-submission-content" class="tab-content tab-content-v6 col-md-12"> -->
+          <!-- <div role="tabpanel" class="tab-pane fade" id="art_details" aria-labelledby="art_details" > -->
+          {% if art_meta %}
+            {% include 'articles/article_form.html' %}
+          <!-- </div> -->
+          {% elif art_auth %}
+          <!-- <div role="tabpanel" class="tab-pane fade active in" id="art_author" aria-labelledby="art_author"> -->
+            {% include 'articles/article_auth_form.html'%}
+          <!-- </div> -->
+          {% elif art_files %}
+            {% include 'articles/article_file_form.html' %}
+          {% endif %}
+        <!-- </div> -->
+    </div>
+  </div>
+<!-- end: content -->
+
+{% endblock %}
+
+{% block custom_scripts %}
+    <script src="{{STATIC_URL}}js/article.js"></script>
+    <script src="{{STATIC_URL}}js/plugins/moment.min.js"></script>
+
+    <script src="{{STATIC_URL}}js/daterangepicker.js"></script>
+    <script>
+        /**
+        $('#rev_date_start').daterangepicker({
+            "showDropdowns": true,
+            "linkedCalendars": false,
+            "startDate": "12/09/2016",
+            "endDate": "01/03/2017",
+            "opens": "right",
+        }, function(start, end, label) {
+            console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+        
+        **/
+        
+        $(function() {
+            //date_day = 
+            //alert(date_day.toString())
+            $('#rev_date_start').daterangepicker({
+                "singleDatePicker": true,
+                "showDropdowns": true,
+                "startDate": moment().add(10, 'days').calendar(),
+            },
+
+            function(start, end, label) {
+                //var years = moment().diff(start, 'years');
+                var years = moment().add(1, 'weeks').calendar();
+                //alert("You are " + years + " years old.");
+            });
+
+        });
+
+    </script>
+{% endblock custom_scripts %}

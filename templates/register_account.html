@@ -1,0 +1,84 @@
+<div class="modal fade" id="register_account_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg">
+    	<div class="modal-content">
+
+      	<div class="modal-header">
+      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      		<h3 class="modal-title">Register Account</h3>
+				</div>
+				
+				<div class="modal-body">
+
+					<div id="register_account" class="">
+						<section>
+							<div class=" panel">
+								<div class=" panel-heading">
+									<h4>Register Form</h4>
+								</div>
+								<div class="panel-body" style="padding-bottom:30px;">
+									<div class="col-md-12">
+										<form class="cmxform" id="signupForm"  action="/msrc/register_account" novalidate="novalidate">
+											
+											<div class="col-md-6">
+												<div class="form-group form-animate-text" style="margin-top:40px !important;">
+													<input type="text" class="form-text valid" id="validate_firstname" name="validate_firstname" required="" aria-required="true" aria-invalid="false" aria-describedby="validate_firstname-error">
+													<span class="bar"></span>
+													<label>Firstname</label>
+													<em id="validate_firstname-error" class="error"></em>
+												</div>
+													
+												<div class="form-group form-animate-text" style="margin-top:40px !important;">
+													<input type="text" class="form-text valid" id="validate_lastname" name="validate_lastname" required="" aria-required="true" aria-invalid="false" aria-describedby="validate_lastname-error">
+													<span class="bar"></span>
+													<label>Lastname</label>
+													<em id="validate_lastname-error" class="error"></em>
+												</div>
+
+												<div class="form-group form-animate-text" style="margin-top:40px !important;">
+													<input type="text" class="form-text valid" id="validate_username" name="validate_username" required="" aria-required="true" aria-invalid="false" aria-describedby="validate_username-error">
+													<span class="bar"></span>
+													<label>Username</label>
+													<em id="validate_username-error" class="error"></em>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group form-animate-text" style="margin-top:40px !important;">
+													<input type="password" class="form-text valid" id="validate_password" name="validate_password" required="" aria-required="true" aria-invalid="false" aria-describedby="validate_password-error">
+													<span class="bar"></span>
+													<label>Password</label>
+													<em id="validate_password-error" class="error"></em>
+												</div>
+
+												<div class="form-group form-animate-text form-animate-error" style="margin-top:40px !important;">
+													<input type="password" class="form-text error" id="validate_confirm_password" name="validate_confirm_password" required="" aria-required="true" aria-invalid="true" aria-describedby="validate_confirm_password-error">
+													<span class="bar"></span>
+													<label>Confirm Password</label>
+													<em id="validate_confirm_password-error" class="error">Your password must be at least 5 characters long</em>
+												</div>
+
+												<div class="form-group form-animate-text form-animate-error" style="margin-top:40px !important;">
+													<input type="text" class="form-text error" id="validate_email" name="validate_email" required="" aria-required="true" aria-invalid="true" aria-describedby="validate_email-error">
+													<span class="bar"></span>
+													<label>Email</label>
+													<em id="validate_email-error" class="error">Please enter a valid email address</em></div>
+                        </div>                   
+                        <div class="col-md-12">
+                        	<div class="form-group form-animate-checkbox">
+                        		<input type="checkbox" class="checkbox" id="validate_agree" name="validate_agree">
+                        		<label>Please agree to our policy</label>
+                        	</div>
+                        	<input class="submit btn btn-danger" type="submit" value="Submit">
+                        </div>
+                      </form>
+
+                    </div>
+								</div>
+							</div>
+						</section>
+					</div>
+
+				</div> <!-- modal body -->
+
+			</div><!-- modal-content -->
+		</div><!-- modal-dialog -->
+</div><!-- modal -->

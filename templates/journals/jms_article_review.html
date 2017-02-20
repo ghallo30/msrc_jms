@@ -1,0 +1,106 @@
+{% load security %}
+
+<div class="modal fade" id="view_reivewer_response" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	  	<div class="modal-content">
+	      
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h3 class="modal-title">Reviewer Response Modal</h3>
+	      </div>
+	      
+	      <div class="modal-body">
+					<div class="col-sm-12 padding-0">
+						<div class="panel">
+							<!-- <div class="panel-heading"><h4><strong>Reviewe(s) Response</strong></h4> </div>
+							 -->
+							<div class="panel-body">
+
+								
+								<div id="reviewer_form_response">
+									{% include 'journals/review_response.html' %}
+								</div><!-- reviewer_response -->
+						  
+							</div><!-- panel-body -->
+
+						</div><!-- panel -->
+					</div>
+				</div><!-- /.modal-body -->
+
+	      <div class="modal-footer"> 
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="col-sm-12 padding-0">
+	<div class="panel">
+	    <div class="panel-heading"><h4><strong>Reviewer(s)</strong></h4> 
+	    <!-- <button class="btn btn-primary"><span class="icons icon-user-follow"></span> Add Reviewer</button> -->
+	    {% if assigned_eddie %}
+	    <a id="add-review-btn" data-toggle="modal"  href="#add_reivewer_modal" class="btn btn-primary btn-lg"><span class="icons icon-user-follow"></span> Add Reviewer</a>
+	    {% else %}
+	    <button  data-toggle="modal" href="#add_reivewer_modal" class="btn btn-primary btn-lg" disabled><span class="icons icon-user-follow" ></span> Add Reviewer</button>
+	    {% endif %}
+		</div>
+		<div class="panel-body">
+
+			<!-- <p>For Submission with more than one Author, order Authors as they appear on citation</p> -->
+			<div id="art_reviewer">
+				<table id="reviewer_table" class=" table table-striped table-hover">
+					<thead>
+						<th>Name</th>
+						<th>Status</th>
+						<th>Round</th>
+						<th>Due Date</th>
+						<th>Reccomendation</th>
+						<th>Action</th>
+					</thead>
+					<tbody>
+						{% for rev in submit_reviewers %}
+							<tr > 
+								<td> <b>{{rev.reviewer.first_name|first|upper}}. {{rev.reviewer.last_name|first|upper|title}}</b> </td>
+								<td>
+								    {% if rev.is_active %}
+								        Accepted | On_review
+								    {% else %}
+								        {% if rev.date_cancelled %}
+								        	<!-- cancelled review-->
+								        	Review Cancelled on {{rev.date_cancelled|date}}
+								        {% elif invitation_declined %}
+								        	<!-- declined invitation-->
+								        	Declined
+								        {% else %}
+								        	Waiting for confirmation
+								    	{% endif %}
+								    {% endif %}
+								</td>
+								<td> {{ rev.review_rounds }}</td>
+								<td> {{ rev.date_ended|date }} </td>
+								<td> {% if rev.recommendation %}
+										{{rev.get_recommendation_display}}
+									 {% else %}
+									 	{% if rev.is_active %}
+									 		Review on going | No decision yet.
+									 	{% else %}
+									 		n/a
+									 	{% endif %}	
+									 {% endif %}
+								</td>
+	                            <th>
+	                            	{% if rev.recommendation %}
+										<button class="btn btn-default" onclick="get_review_response('{{rev.id}}')"><span class="fa fa-list-alt"></span>View Review</button> 
+									{% else %}
+									 	<button class="btn btn-danger"><span class=""></span> Remove</button> | <button class="btn btn-success"><span class=""></span> Remind</button>
+									{% endif %}
+
+	                            </th>
+	                        </tr>
+	                    {% endfor %}       
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+</div>

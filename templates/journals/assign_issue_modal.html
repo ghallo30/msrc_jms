@@ -1,0 +1,35 @@
+{% load security %}
+<!-- modal search -->
+
+ 
+ <div class="modal fade" id="assign_issue_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">Assign Issue</h3>
+      </div>
+      
+      <div class="modal-body">
+        
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div id="art_title_issue"></div>
+            </div>
+            <div class="panel-body">
+              <strong>Select Issue</strong>
+              {% include 'journals/search_issue_form.html' %}
+            </div>
+
+          </div>
+      </div>
+
+      <div class="modal-footer"> 
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

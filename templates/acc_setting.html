@@ -1,0 +1,95 @@
+{% extends 'base.html' %} 
+{% load security %}
+{% block content %}
+
+{% if author_form %}
+
+{% else %}
+
+{% endif %}
+<div id="content">
+    <div class="col-sm-12" style="padding:10px;">
+       
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12">
+              <h3 class="animated fadeInLeft">Change Password</h3>
+              <p class="animated fadeInDown"> Fill the form below appropriately.</p>										
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div id="results_form_auth">
+                {% if error_message %}
+											<p class="alert alert-danger">{{ error_message }}</p>
+										{% endif %}
+										{% if success_message %}
+											<p class="alert alert-success">{{ success_message }}</p>
+										{% endif %}
+										<h3>Change Password</h3>
+            </div>
+
+						<form id="art_auth_form" action="/save_profile/" method="POST" enctype="multipart/form-data">
+            {% endif %}
+
+								{% csrf_token %}
+								<div class="col-sm-12">
+                   <input type="hidden" id="curr_user_det" name="curr_user_det" value="{{curr_user.id|encrypts:"encrypt"}}">
+                    <!-- <div class="col-sm-12" style="padding-bottom: 20px;">
+                        {% if auth_form.errors %}
+                            {% for field in auth_form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{field.name}}--- {{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in auth_form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div> -->
+									<div class="row">
+
+										<div class="form-group">
+										  <label class="col-sm-2">Current Password</label>
+										  <div class="col-sm-4">
+										    {{ form.current_password }}
+										  </div>
+										</div>
+
+										<div class="form-group">
+										  <label class="col-sm-2">New Password</label>
+										  <div class="col-sm-4">
+										    {{ form.new_password }}
+										  </div>
+										</div>
+
+										<div class="form-group">
+										  <label class="col-sm-2">Confirm Password</label>
+										  <div class="col-sm-4">
+										    {{ form.confirm_password }}
+										  </div>
+										</div>
+										<div class="form-group">
+										  <div class="col-sm-2 col-sm-offset-2">
+										    <input type="submit" class="btn btn-primary" name="submit" value="Change Password">
+										  </div>
+										</div>
+									</div>
+
+									<button type="submit" class="btn-flip btn btn-raised btn-lg btn-success"><strong>Submit</strong></button>
+									<button type="reset" class="btn-flip btn btn-raised btn-lg btn-warning"><strong>Cancel</strong></button>
+                </div>
+            </form>
+
+        </div><!-- col-sm-12 -->
+
+
+    </div><!-- col-sm-12 -->
+</div>
+{% endblock content %}
+     

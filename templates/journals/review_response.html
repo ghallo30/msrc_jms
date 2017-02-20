@@ -1,0 +1,45 @@
+{% load security %}
+
+<div class="row">
+	<div class="col-sm-12" style="padding-bottom: 20px;">
+		<br/>    
+		<div class="col-sm-12 padding-0">	
+			<div class="col-sm-6 padding-top">
+			    <div class="col-sm-4 padding-top"><strong> Abstract Review:</strong></div>
+			   <div id="abstract_review" class="col-sm-8 padding-top" >{{review_response.get_abstract_review_display}}</div>
+			</div>
+			<div class="col-sm-6 padding-top">
+			    <div class="col-sm-4 padding-top"><strong> Quality:</strong></div>
+			   <div id="quality" class="col-sm-8 padding-top">{{review_response.get_quality_display}}</div>
+			</div>
+		</div>  
+		<div class="col-sm-12 padding-0">      
+			<div class="col-sm-6 ">
+			   <div class="col-sm-4 padding-top"> <strong> Clarity:</strong></div>
+			   <div id="clarity" class="col-sm-8 padding-top">{{review_response.get_clarity_display}}</div>
+			</div>
+			<div class="col-sm-6 ">
+				<div class="col-sm-4 padding-top"> <strong> Acceptability:</strong></div>
+				<div id="acceptability" class="col-sm-8 padding-top"> {{review_response.get_acceptability_display}}</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 padding-top">
+			<a id="review_file" href=""> Review File</a>
+		</div>
+		<hr/>
+		<div class="col-sm-8 padding-top">
+			<div class="col-sm-3"><strong>Author Comment:</strong></div>
+			<div id="comments_for_editor" class="col-sm-9 padding-top">
+				{{review_response.comments_for_editor|safe}}
+			</div>
+		</div>
+
+		<div class="col-sm-8 padding-top">
+			<div class="col-sm-3"><strong>Editor Comment:</strong></div>
+			<div id="comments_for_author" class="col-sm-9 padding-top">
+				{{review_response.comments_for_author|safe}}
+			</div>
+		</div>
+	</div><!-- col-sm-12 -->
+</div> <!-- row -->

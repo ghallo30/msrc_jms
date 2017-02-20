@@ -1,0 +1,27 @@
+{% load security %}
+
+<form id="search_issue" method="POST" action=""  class="form-search">
+{% csrf_token %}
+	
+	 <div class="input-group">
+        
+        <!-- search Filter -->
+ 
+      {{issue_select_form}}
+      
+      <input class="form-control" id="article_curr_info" name="article_curr_info" value='' type="hidden" />
+
+    </div> <!-- /btn-group -->
+
+    <div class="col-sm-12">
+          <div class="pull-right">
+            <button name="submit"  class="btn btn-primary" type="button" onclick="" >
+              <span class=""></span> Save
+            </button> &nbsp;&nbsp;|&nbsp;&nbsp;
+
+            <button name="submit"  class="btn btn-success" type="button" onclick="assign_issue_publish()">
+              <span class=""></span>Publish 
+            </button>
+          </div>
+    </div>
+</form>

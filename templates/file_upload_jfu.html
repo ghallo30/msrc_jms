@@ -1,0 +1,7 @@
+{% extends 'jfu/upload_form.html' %}
+
+{% block JS_OPTS %}
+  sequentialUploads: true,
+  acceptFileTypes: /(\.|\/)(ppt|txt|doc?x|png|gif|jpe?g)$/i
+  maxFileSize: 5000000
+{% endblock %}

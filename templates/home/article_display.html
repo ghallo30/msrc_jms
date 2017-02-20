@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block content %}
+   
+    <!-- start: Content -->
+    <div id="article_content" class="article-v1 div-content">
+        <div class="panel box-shadow-none content-header">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h2 class="animated fadeInLeft">{{art_info.title}}</h2>
+                  <!-- <p class="animated fadeInDown">
+                    Pages <span class="fa-angle-right fa"></span> Article v1
+                  </p> -->
+              </div>
+            </div>
+        </div>
+        <div class="col-md-12 padding-0">
+          	<div class="panel">
+            	<div class="pull-right article-v1-time">
+            		<em>Published {{art_info.pub_date|date}}</em> | <a class="btn btn-default" href="/msrc/gen-pdf/{{art_info.id}}" target="_blank">Print</a>
+            	</div>
+            	<div class="panel-body">
+					<div class="col-md-12 text-center article-v1-title"><h2>Abstract</h2></div>
+					<div  id="article_display" class="col-md-12  article-v1-body">
+	                	{{art_info.abstract|safe}}
+
+						<div class="col-md-12 article-v1-tags">
+							<h4>
+							</h4>
+						</div>
+					</div>
+					<div class="col-md-12 article-v1-footer">
+						<div class="col-md-12 padding-0">
+							<h2>References:</h2>
+						</div>
+						<div class="col-md-12 padding-0">
+							{{art_info.references|safe|linebreaksbr}}
+						</div>
+						<!-- <div class="col-md-12 aritcle-v1-writter">
+						<div class="media">
+	                    <div class="media-left">
+	                      <a href="#">
+	                        <img src="{{STATIC_URL}}img/avatar2.png" class="media-object card-v10-avatar"/>
+	                      </a>
+	                    </div>
+	                    <div class="media-body">
+	                      
+	                   	</div>
+	                 	</div> 
+									</div> --><!-- writer -->
+	               
+					</div><!-- article-footer -->
+         		</div><!-- panel-body -->
+         	</div><!-- panel -->
+        </div><!-- colmd-12 -->
+    </div><!-- end: content -->
+  <!-- end: Content -->
+
+
+  {% endblock content %}

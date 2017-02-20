@@ -1,0 +1,44 @@
+{% extends "django_messages/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="content">
+<div class="col-md-12" style="padding:10px;">
+       
+  <div class="panel box-v1">
+    <div class="panel-heading bg-white border-none">
+      <div class="col-md-12 col-sm-12 col-xs-12 text-left padding-0">
+	      <h1>{% trans "Deleted Messages" %}</h1>
+        <div class="separator"></div>
+      </div>
+
+    
+    </div>
+    <div class="panel-body">
+
+			
+			{% if message_list %}
+			<table class="messages table table-striped table-hover">
+			    <thead>
+			        <tr><th>{% trans "Sender" %}</th><th>{% trans "Subject" %}</th><th>{% trans "Date" %}</th><th>{% trans "Action" %}</th></tr>
+			    </thead>
+			    <tbody>
+			{% for message in message_list %}
+			    <tr>
+			        <td>{{ message.sender }}</td>
+			        <td>
+			        {{ message.subject }}
+			        </td>
+			        <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+			        <td><a class="btn btn-default" href="{% url 'messages_undelete' message.id %}">{% trans "Undelete" %}</a></td>
+			    </tr>
+			{% endfor %}
+			    </tbody>
+			</table>
+			{% else %}
+			<p>{% trans "No messages." %}</p>
+			{% endif %}
+			<br />
+			<p>{% trans "Deleted Messages are removed from the trash at unregular intervals, don't rely on this feature for long-time storage." %}</p>
+		</div>
+{% endblock %}

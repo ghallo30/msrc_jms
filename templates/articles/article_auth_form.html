@@ -1,0 +1,58 @@
+{% load security %}
+<!-- =========================================auth modal============================================================ -->
+{% include 'articles/add_author_modal.html' %}
+<!-- =========================================auth modal============================================================ -->
+<div class="panel">
+    <div class="panel-heading">
+    	<br>
+        <strong class="label-title" >Article Title:</strong>
+    	<h3> {{art_info.title}}</h3>
+        <input class="form-control" id="rev_date_start" value="" placeholder="MM/DD/YYYY" type="text">
+    </div>
+    
+
+    <div class="panel-body">
+        
+        {% include 'articles/view_author_modal.html' %}
+
+    	<h4>Article Author(s)</h4>
+        <!-- <p>For Submission with more than one Author, order Authors as they appear on citation</p> -->
+        
+        <button id="auth_more_btn" type="button" onclick="art_auth_form()" class="btn-flip btn btn-raised btn-info pull-right" > <span class="fa fa-plus" ></span> Add Author(s)</button>
+        <div id="art_author">
+            <table id="author_table" class=" table table-striped table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Main</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {% for art in author_list %}
+                        <tr id="{{art.id|encrypts:"encrypt"}}"> 
+                            <td>{{art.author.first_name|first|upper}}. {{art.author.last_name|title}} </td>
+                            <td>
+                                {% if art.main_author %}
+                                    Submitting Author
+                                {% else %}
+                                    Co-author
+                                {% endif %}
+                            </td>
+                            <td> 
+                                {% if art.main_author %}
+                                    <button class="btn btn-default" onclick="view_auth_info('{{art.id}}','{{art.author.id}}')"><span class="icons icon-info"></span> <strong>View Info</strong></button>
+                                {% else %}
+                                    <a id="update_coauthor" href="/articles/edit-coauthor/{{art_info.id|encrypts:"encrypt"}}/{{art.author.id}}" class="btn btn-default"><i class="fa fa-pencil-square" style="font-size:18px;"></i> <strong> Update</strong></a>&nbsp;&nbsp;
+                                    |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button id="remove_coauthor" class="btn btn-danger" onclick="remove_art_auth('{{art.id|encrypts:"encrypt"}}', '{{art.author.last_name|title}}, {{art.author.first_name|title}}')"><i class="fa fa-remove" style="font-size:18px;"></i> <strong>Remove</strong> </button>
+                                    <!-- | <button class="btn btn-default"> <i class="fa fa-pencil" style="font-size:18px;"></i> </button> -->
+                                    
+                                {% endif %}
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}       
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

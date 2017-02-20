@@ -1,0 +1,25 @@
+{% load security %}
+
+<ul id="tab-rev-submission" class="nav nav-tabs nav-tabs-v6">
+  
+  {% if is_accepted %}
+  <li class="{{art_meta}}" >
+    <a href="/reviews/submission_meta/{{rev_info.id|encrypts:"encrypt"}}/">
+      <h4> <span class="icons icon-note"></span> Summary</h4> 
+    </a>
+  </li>
+
+  <li class="{{art_rev_form}}">
+    <a href="/reviews/submission_meta/{{rev_info.id|encrypts:"encrypt"}}/review_form/" >
+      <h4><span class="icons icon-user-follow"></span> Review</h4>
+    </a>
+  </li>
+ 
+  {% else %}
+  <li class="{{art_meta}}" >
+    <a href="/articles/new_submission/">
+      <h4> <span class="icons icon-note"></span> Summary</h4> 
+    </a>
+  </li>
+  {% endif %}
+</ul>

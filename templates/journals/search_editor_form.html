@@ -1,0 +1,22 @@
+{% load security %}
+
+<form id="search_reviewer" method="POST" action=""  class="form-search">
+{% csrf_token %}
+	
+	 <div class="input-group">
+        
+        <!-- search Filter -->
+ 
+      <input class="form-control" id="editor_field" name="editor_field" placeholder="Enter Editor Name" type="text" />
+      
+      <input class="form-control" id="article_curr_info" name="article_curr_info" value='{{art_info.id|encrypts:"encrypt"}}' type="hidden" />
+        
+        <div class="input-group-btn">
+            <button name="submit" value="submit" class="btn btn-default" type="submit" disabled="true">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+    </div> <!-- /btn-group -->
+
+
+</form>

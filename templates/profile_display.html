@@ -1,0 +1,87 @@
+{% extends 'base.html' %} 
+{% load security %}
+{% block content %}
+
+{% if author_form %}
+
+{% else %}
+
+{% endif %}
+<div id="content">
+    <div class="col-md-12" style="padding:10px;">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="col-md-12 col-sm-12">
+            {% if art_info %}
+                <h3 class="animated fadeInLeft">Author Profile</h3>
+            {% else %}
+                <h3 class="animated fadeInLeft">User Profile</h3>
+            {% endif %}
+              <p class="animated fadeInDown"> Fill the form below appropriately. Enter (n/a) for empty fields.</p>
+              <p class="animated fadeInDown"><i> Be sure to update your profile timely, this would be used as your contact details.</i></p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div id="results_form_auth">
+                {{message}}
+            </div>
+            {% if art_info %}
+                <form id="art_author_form" action="/articles/coauthor_save/{{art_info.id|encrypts:"encrypt"}}/{{curr_user.id}}/" method="POST" enctype="multipart/form-data">
+
+            {% else %}
+                <form id="art_auth_form" action="/save_profile/" method="POST" enctype="multipart/form-data">
+            {% endif %}
+
+                {% csrf_token %}
+                <div class="col-sm-12">
+                    <input type="hidden" id="curr_user_det" name="curr_user_det" value="{{curr_user.id|encrypts:"encrypt"}}">
+                    <!-- <div class="col-sm-12" style="padding-bottom: 20px;">
+                        {% if auth_form.errors %}
+                            {% for field in auth_form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{field.name}}--- {{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in auth_form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div> -->
+
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-6 col-xs-12"><label>First Name</label> {{author_form.first_name}}</div>
+                        <!-- <div class="col-sm-4"><label>Middle Name</label> {{auth_form.middle_name}}</div> -->
+                        <div class="col-sm-6 col-xs-12"> <label>Last Name</label> {{author_form.last_name}}</div>
+                        <!-- <input type="file" name="files[]" multiple accept="jpeg|png|docx|ppt|txt"> -->
+                    </div>
+                    <hr>
+                    
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-4 padding-top"><label>Title</label> {{author_form.position_title}}</div>
+                        <div class="col-sm-8 padding-top"><label>Department</label> {{author_form.department}}</div>
+                    </div>
+                    <hr>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 padding-top"><label>Contact Number</label> {{author_form.contact_no}}</div>
+                        <div class="col-sm-6 padding-top"><label>Email Address</label> {{author_form.email}}</div>
+                    </div>
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-12"><label>Address</label> {{author_form.address}}</div>
+                    </div>
+
+                    <button type="submit" class="btn-flip btn btn-raised btn-lg btn-success"><strong>Submit</strong></button>
+                    <button type="reset" class="btn-flip btn btn-raised btn-lg btn-warning"><strong>Cancel</strong></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+     

@@ -1,0 +1,60 @@
+{% load security %}
+<!-- modal search -->
+
+ <div class="modal fade" id="editor_decision_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">Editor Decision</h3>
+      </div>
+      
+      <div class="modal-body">
+          <div class="panel panel-default">
+            <div class="panel-body"   style="position: relative;overflow: hidden;">
+
+              <div id="editor_form_decision" >
+              	
+              	<div class="col-sm-12 padding-top">
+
+	              	<div class="col-sm-6 padding-top">
+										<label>Select Decision</label>
+										<select id="editor_decision" name="editor_decision">
+											<option value="ACC">Accept Submission</option>
+											<option value="REV">Revision Required</option>
+											<option value="DEC">Reject Submission</option>
+											<!-- <option value="phospital_id">Reject</option> -->
+										</select>
+									</div>
+
+	              	<div class="col-sm-12 padding-top">
+
+   		           		<label>Decision Note:</label><br/>
+              			<textarea  id="decision_note" name="decision_note"></textarea>
+              		</div>
+
+              		<button type="button" class="btn btn-success btn-lg" onclick="submit_decision({{art_info.id}})">Make Decision</button>
+              		<!-- <div class="col-sm-8 padding-top">
+   		           		<button class="btn btn-primary" onclick="get_review_response()"> Include Review Response:</button>
+              		</div> -->
+              		<!-- <div class="col-sm-8 padding-top">
+              			Author Note:
+              			<textarea class="ckeditor" id="author_note" name="author_note"></textarea>		
+              		</div> -->
+								
+								</div>        	
+
+              </div><!-- /.modal-body -->
+            </div>
+          </div>
+      </div>
+
+      <div class="modal-footer"> 
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

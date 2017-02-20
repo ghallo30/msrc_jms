@@ -1,0 +1,40 @@
+{% load security %}
+<div class="panel box-shadow-none content-header">
+	<div class="panel-body">
+		<div class="col-sm-12">
+			<h3 class="animated fadeInLeft">Reveiw Forms</h3>
+			<p class="animated fadeInDown">
+				{% if art_info %}
+					<a href="" >{{art_info.title}}</a>
+					<span class="fa-angle-right fa"></span>
+					Review Form
+				{% else %}
+					{{review_form_fromurl}}
+				{% endif %}
+				
+			</p>
+		</div>
+
+		<div class="col-sm-12" >
+			<div class=" panel">
+	    		<div class="panel-body ">
+	    			
+	    			<a id="add-review-form-btn" data-toggle="modal" href="#add_reivewer_form_modal" class="btn btn-primary btn-lg"><span class="icons icon-user-follow"></span> Add Reviewer Form </a>
+	    			<br />
+	    			{% if rev_form_page %}
+		    			<div id="review_form_display" class="col-sm-7">
+		    				{% include 'journals/review_form_list.html' %}
+		    			</div>
+		    			<div id="review_form_display" class="col-sm-5">
+		    				{% include 'journals/review_element_list.html' %}
+		    			</div>
+	    			{% else %}
+	    				<div id="review_form_display"  >
+		    				{% include 'journals/review_form_list.html' %}
+		    			</div>
+		    		{% endif %}
+	    		</div>
+			</div>
+		</div>
+	</div> <!-- panel body -->
+</div>

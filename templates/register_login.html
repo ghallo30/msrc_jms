@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JMS| Home </title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/plugins/simple-line-icons.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/plugins/font-awesome.min.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/plugins/animate.min.css"/> -->
+    <!-- NProgress 
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- Animate.css -->
+
+    <!-- Custom Theme Style -->
+    <link href="{{STATIC_URL}}css/jms-style.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/jms.css" rel="stylesheet">
+
+  </head>
+
+  <body class="login">
+    <div class="col-sm-12" >
+        
+        <div class="login_wrapper">
+        	<a class="hiddenanchor" id="signup">zczxczx</a>
+        	<a class="hiddenanchor" id="signin">asd</a>
+
+
+            <div id="login_info" class="row">
+                <div class="col-sm-12"></div>
+                {% if msg %}
+                <div class="alert {{alert_status}} alert-outline alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <strong>OOps!</strong> {{msg}}
+                </div>
+                {% endif %}
+            </div>
+
+            {% include 'register_account.html' %}
+            
+            <div class="row">
+                <div class="col-sm-12">
+	                <div class="animate_login form login_form">
+	                    <section class="login_content">
+	                        <form id="jms_signin_form" action="/sign-in/" method="POST">
+	                            {% csrf_token %}
+                              <input type="hidden" id="signup_form_page" value="yes">
+                              
+	                          <h1>Sign-In Form</h1>
+	                          <div>
+	                            <!-- <input type="text" class="form-control" placeholder="Username" required="" /> -->
+	                            {{signin_form.username}}
+	                          </div>
+	                          <div>
+	                            {{signin_form.password}}
+	                            <!-- <input type="password" class="form-control" placeholder="Password" required="" /> -->
+	                          </div>
+	                          <div>
+	                            <button type="submit" class="btn bg-dark-blue-grey" ><b style="color: #fff;">Log in</b></button>
+
+	                            <a class="reset_pass" href="#">Lost your password?</a>
+	                          </div>
+
+	                          <div class="clearfix"></div>
+
+	                          <div class="separator">
+                                <p class="change_link">New to site?
+	                              <!-- <a href="#signup" class="to_register"> Create Account </a> -->
+                                  <a href="" data-toggle="modal" data-target="#register_account_modal">
+                                  	<span class="glyphicon glyphicon-user"></span>&nbsp;
+                                  		<strong> Create Account</strong>
+                                  </a>
+
+	                            </p>
+
+	                            <div class="clearfix"></div>
+	                            <br />
+
+	                            <div>
+	                            		<h4>Mindanao State University</h4>
+	                                <h1><i class="icons icon-book-open"></i> Mamitua Saber Research Center - Journal Publication System</h1>
+	                                <p>©2016 All Rights Reserved. A Journal Editorial Publication Management System</p>
+	                            </div>
+	                          
+	                          </div>
+	                        </form>
+	                    </section>
+	                </div>
+
+					
+                </div><!-- col-sm-12 -->
+            </div>
+        </div> <!-- login login wrapper  -->
+    </div>
+
+    <!-- start: Javascript -->
+    <script src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.ui.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}js/plugins/jquery.mask.min.js"></script>
+
+    <script src="{{STATIC_URL}}js/plugins/moment.min.js"></script>
+
+    <script src="{{STATIC_URL}}js/plugins/jquery.validate.min.js"></script>
+    <!-- <script src="{{STATIC_URL}}js/main.js"></script>-->
+    <script src="{{STATIC_URL}}js/home.js"></script>
+    <!-- end: javascript -->
+      
+  </body>
+</html>

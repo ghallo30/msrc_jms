@@ -1,0 +1,73 @@
+	
+<style>
+table
+{
+border-collapse:collapse;
+}
+.normal td
+{
+border:1px solid black;
+
+
+}
+
+.headers
+{
+height:50px;
+text-align:center;
+}
+td
+{
+	width: 25%;
+	height:20px;
+
+}
+
+.first_cell
+{
+	width: 30%;
+	height:20px;
+
+}
+.row{
+display: inline;
+}
+.col-sm-6
+{
+	width: 50%;
+	float: left;
+
+}
+.grand{
+	border-top:2px solid black;
+}
+
+</style>
+<div class="panel panel-default" >
+<!-- <div class="head panel-heading"> -->
+<!-- </div> -->
+	<div class="panel-body">
+	<input type="hidden" id="bill_id_form" name="bill_id_form" value ="{{billingstatement.id}}">
+
+		<div style="text-align: center">
+		<h4 class="text-center"  >{{art_info.title}}</h4><br>
+
+		</div>
+		<br>
+		<div class="row" >
+			<div class="col-sm-12 text-center">
+			<strong id="patienf_name_field">&nbsp;Abstract</strong><br>
+			</div>
+			<div class="col-sm-12">
+				{{art_info.abstract|safe}}
+			</div>
+			<div class="col-md-12 padding-0">
+				<h3>References:</h3>
+			</div>
+			<div class="col-md-12 padding-0">
+				{{art_info.references|safe|linebreaksbr}}
+			</div>
+
+		</div>
+	</div>
+</div>

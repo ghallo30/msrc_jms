@@ -1,0 +1,74 @@
+{% load security %}
+
+<div class="modal fade" id="add-auth-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span class="fa fa-remove"></span><span class="sr-only"></span></button>
+        <h3 class="modal-title ">Article Author Form</h3>
+        <!-- <input class="form-control" id="rev_date_start" value="" placeholder="MM/DD/YYYY" type="text"> -->
+      </div>
+
+      <div class="modal-body">
+          <div class="row">
+            <div id="results_form_auth"></div>
+
+            <form id="art_auth_form" action="/articles/art-auth-save/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-sm-12">
+                    <input type="hidden" id="submission_meta" name="submission_meta" value="{{art_info.id|encrypts:"encrypt"}}">
+                    <!-- <div class="col-sm-12" style="padding-bottom: 20px;">
+                        {% if auth_form.errors %}
+                            {% for field in auth_form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{field.name}}--- {{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in auth_form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div> -->
+
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-6 col-xs-12"><label>First Name</label> {{author_form.first_name}}</div>
+                        <!-- <div class="col-sm-4"><label>Middle Name</label> {{auth_form.middle_name}}</div> -->
+                        <div class="col-sm-6 col-xs-12"> <label>Last Name</label> {{author_form.last_name}}</div>
+                        <!-- <input type="file" name="files[]" multiple accept="jpeg|png|docx|ppt|txt"> -->
+                    </div>
+                    <hr>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 padding-top"><label>Affiliation</label> {{author_form.affiliation}}</div>
+                    </div>
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-4 padding-top"><label>Title</label> {{author_form.position_title}}</div>
+                        <div class="col-sm-8 padding-top"><label>Department</label> {{author_form.department}}</div>
+                    </div>
+                    <hr>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 padding-top"><label>Contact Number</label> {{author_form.contact_no}}</div>
+                        <div class="col-sm-6 padding-top"><label>Email Address</label> {{author_form.email}}</div>
+                    </div>
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-12"><label>Address</label> {{author_form.address}}</div>
+                    </div>
+
+                    <button type="submit" class="btn-flip btn btn-raised btn-lg btn-success"><strong>Submit</strong></button>
+                    <button type="reset" class="btn-flip btn btn-raised btn-lg btn-warning"><strong>Cancel</strong></button>
+                </div>
+            </form>
+          </div>
+      </div> <!-- /.modal-body -->
+              
+      <div class="modal-footer"> <!-- modal footer-->
+        <button type="button" class="btn btn-default" data-dismiss="modal"><strong>Close</strong></button>
+      </div><!-- modal footer -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

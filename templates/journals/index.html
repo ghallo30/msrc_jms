@@ -1,0 +1,51 @@
+{% extends 'journals/extend_base.html' %}  
+{% load security %}
+
+{% block content %}
+  <div id="content">
+    <div class="col-md-12" style="padding:10px;">
+        {% include 'journals/nav_bar.html' %}
+          <div class="panel box-v1">
+            <div class="panel-heading bg-white border-none">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center padding-0">
+                <h1>{{page_title}}</h1>
+              </div>
+            </div>
+            <div class="panel-body">
+              
+              <hr/>
+
+              <div class="col-sm-12">
+                <div class="col-sm-7 padding-0">
+									<form id="search_submission" method="POST" action=""  class="form-search">
+									{% csrf_token %}
+									  
+										<div class="input-group">
+									  	<input class="form-control" id="submission_field" name="submission_field" placeholder="Search Submission" type="text" />  
+
+									  	<div class="input-group-btn">
+									  		<button name="submit" value="submit" class="btn btn-default" type="submit">
+									  			<span class="glyphicon glyphicon-search"></span>
+									  		</button>
+									  	</div>
+
+									  </div> <!-- /btn-group -->
+									</form>
+								</div>
+								<div class="col-sm-5 padding-0">
+								</div>
+              </div>
+              <div id="jms_article_list">
+              {% include 'journals/jms_article_list.html' %}
+              </div>
+            </div>
+          </div>
+          
+
+    </div>
+  </div>  
+{% endblock content %}
+
+{% block custom_scripts %}
+    <script src="{{STATIC_URL}}js/journal.js"></script>
+{% endblock custom_scripts %}

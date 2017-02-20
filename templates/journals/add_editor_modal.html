@@ -1,0 +1,38 @@
+{% load security %}
+<!-- modal search -->
+
+ 
+ <div class="modal fade" id="add_editor_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">Add Editor</h3>
+      </div>
+      
+      <div class="modal-body">
+        <h3>Search Editor</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              {% include 'journals/search_editor_form.html' %}
+              
+            </div>
+
+            <div class="panel-body"   style="position: relative;overflow: hidden;">
+              <h3 class="">Editor List</h3>
+              <div id= "editor_search_results" style="height: 4 50px; overflow-y: auto;">
+                {% include 'journals/editor_list.html' %}
+              </div><!-- /.modal-body -->
+            </div>
+          </div>
+      </div>
+
+      <div class="modal-footer"> 
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

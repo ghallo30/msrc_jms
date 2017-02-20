@@ -1,0 +1,128 @@
+{% load security %}
+
+<!-- article metadata form -->
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Review Form</h3>
+    </div>
+    <div class="panel-body">
+        {% if rev_info %}
+
+            {% if rev_info.is_done %}
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12" style="padding-bottom: 20px;">
+                            
+                            <br/>
+                            
+                            <div class="col-sm-12 padding-top">
+                                <div class="col-sm-4 padding-top"><label> Abstract Review:</label></div>
+                               <div class="col-sm-8 padding-top large-font">{{rev_info.get_abstract_review_display}}</div>
+                            </div>
+
+                            <div class="col-sm-6 padding-top">
+                                <div class="col-sm-4 padding-top"><label> Quality:</label></div>
+                               <div class="col-sm-8 padding-top large-font">{{rev_info.get_quality_display}}</div>
+                            </div>
+                            
+                            <div class="col-sm-6 padding-top">
+                               <div class="col-sm-4 padding-top"> <label> Clarity:</label></div>
+                               <div class="col-sm-8 padding-top large-font">{{rev_info.get_clarity_display}}</div>
+                            </div>
+
+                            <div class="col-sm-6 padding-top">
+                               <div class="col-sm-4 padding-top"> <label> Acceptability:</label></div>
+                              <div class="col-sm-8 padding-top large-font"> {{rev_info.get_acceptability_display}}</div>
+                            </div>
+
+                            
+
+                            
+                            <hr/>
+
+                            <div class="col-sm-8 padding-top">
+
+                                <div class="col-sm-12 padding-top">
+                                    <label>Author Comment:</label>
+                                    <textarea class="ckeditor" id="comments_for_editor" name="comments_for_editor">{{rev_info.comments_for_editor}}</textarea>
+                                </div>
+
+                                <div class="col-sm-12 padding-top">
+                                    Editor Comment:
+                                    <textarea class="ckeditor" id="comments_for_author" name="comments_for_author" >{{rev_info.comments_for_author}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-4    padding-top">
+                                <label> Upload Version:</label><input type="file" id="review_file" />
+                            </div>
+
+
+                            
+                        </div>
+                        
+                    </div>
+                </form>
+            {% else %}
+                <form id="art-meta-form" action="/reviews/review_form/{{rev_info.id|encrypts:"encrypt"}}/save/"  method="POST" enctype="multipart/form-data" disabled="True">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12" style="padding-bottom: 20px;">
+                            
+                            <br/>
+                            
+                            <div class="col-sm-6 padding-top">
+                                <div class="col-sm-4 padding-top"><label> Abstract Review:</label></div>
+                               <div class="col-sm-8 padding-top">{{review_form.abstract_review}}</div>
+                            </div>
+
+                            <div class="col-sm-6 padding-top">
+                                <div class="col-sm-4 padding-top"><label> Quality:</label></div>
+                               <div class="col-sm-8 padding-top">{{review_form.quality}}</div>
+                            </div>
+                            
+                            <div class="col-sm-6 padding-top">
+                               <div class="col-sm-4 padding-top"> <label> Clarity:</label></div>
+                               <div class="col-sm-8 padding-top">{{review_form.clarity}}</div>
+                            </div>
+
+                            <div class="col-sm-6 padding-top">
+                               <div class="col-sm-4 padding-top"> <label> Acceptability:</label></div>
+                              <div class="col-sm-8 padding-top"> {{review_form.acceptability}}</div>
+                            </div>
+
+                            <div class="col-sm-6 padding-top">
+                                <label> Upload Version:</label><input type="file" id="review_file" />
+                            </div>
+                            <hr/>
+
+                            <div class="col-sm-8 padding-top">
+                            <label>Author Comment:</label>
+                            <textarea class="ckeditor" id="comments_for_editor" name="comments_for_editor">{{rev_info.comments_for_editor}}</textarea>
+                            
+                            </div>
+
+                            <div class="col-sm-8 padding-top">
+                                Editor Comment:
+                                <textarea class="ckeditor" id="comments_for_author" name="comments_for_author" >{{rev_info.comments_for_author}}</textarea>
+                            </div>
+                            
+                            <div class="col-sm-12 padding-top">
+                                <button id="review_btn" type="submit" class="btn btn-success" > Save Review </button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </form>
+            {% endif %}
+            
+                
+        {% else %}
+        	<div class="col-sm-12">
+        		<h3>Unable to retrieve form info.</h3> 
+        	</div>
+        {% endif %}
+    </div>
+</div>
+{% block custom_scripts %}
+    <script src="{{STATIC_URL}}js/ckeditor/ckeditor.js"></script>
+{% endblock custom_scripts %}

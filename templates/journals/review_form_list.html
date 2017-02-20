@@ -1,0 +1,41 @@
+
+{% load security %}
+<table id="forqueue" class="table table-striped table-hover">
+	<thead>
+		<th> Form Title </th>
+		<th> Action </th>
+	</thead>
+	<tbody>
+	{% if review_forms %}
+	    {% for rev_form in review_forms %}
+	        <tr>
+	          <td><button onclick="show_review_form{{rev_form.id|encrypts:"encrypt"}}">
+	                <span>{{ rev_form.form_title }}</span>
+	                </button>
+	          </td>
+              <td>
+              	<button class="btn btn-primary" id="invite-rev-btn" onclick="('{{ rev.reviewer_info.id|encrypts:"encrypt"}}', '{{art_info.id|encrypts:"encrypt"}}')"><span class=""></span> Assign</button>
+              	
+              	<!-- <button class="btn btn-primary" id="invite-rev-btn" onclick="invite_reviewer_form('{{ rev.reviewer_info.id|encrypts:"encrypt"}}', '{{art_info.id|encrypts:"encrypt"}}')"><span class=""></span> Invite</button> -->
+              	
+              </td>
+	        </tr>
+	    {% endfor %}
+	{% else %}
+		<tr>
+		<td>
+			<div class="col-md-12">  
+			    <div class="alert alert-danger alert-outline alert-dismissible fade in" role="alert">
+			    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="font-size:1.5em; color:#000000;"><strong>×</strong></span></button>
+			    	<strong>Oops!</strong> No existing review form.&nbsp;&nbsp;&nbsp;
+
+			    	<div class="text-center">
+			    		<a href=""> Add New Form </a>
+			    	</div>
+			    </div>
+			</div>
+		</td>
+		</tr>
+	{% endif %}
+	</tbody>
+</table>

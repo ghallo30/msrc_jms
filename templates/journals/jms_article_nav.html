@@ -1,0 +1,31 @@
+{% load security %}
+
+<ul id="tab-jms-article" class="nav nav-tabs nav-tabs-v6">
+  
+  {% if art_info %}
+  <li class="{{art_meta}}" >
+    <a href="/joumsy/sub_info/{{art_info.id|encrypts:"encrypt"}}/">
+      <h4> <span class="icons icon-doc"></span> Summary</h4> 
+    </a>
+  </li>
+
+  <li class="{{art_review}}">
+    <a href="/joumsy/sub_info/{{art_info.id|encrypts:"encrypt"}}/review/" >
+      <h4><span class="icons icon-user-follow"></span> Review</h4>
+    </a>
+  </li>
+      <!-- <li><a data-toggle="tab" href="#postponed">Postponed</a></li> -->
+ <!--  <li class="{{art_files}}">
+    <a href="/joumsy/sub_info/{{art_info.id|encrypts:"encrypt"}}/editing/"  >
+     <h4> <span class="icons icon-note"></span> Editing</h4>
+    </a>
+  </li> -->
+  {% else %}
+  <li class="{{art_meta}}" >
+    <a href="/joumsy/sub_info/{{art_info.id|encrypts:"encrypt"}}/history">
+      <h4 class="text-danger"> <span class="icons icon-note"></span> History</h4> 
+    </a>
+  </li>
+  {% endif %}
+</ul>
+<br>

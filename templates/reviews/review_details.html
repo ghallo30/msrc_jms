@@ -1,0 +1,56 @@
+{% load security %}
+
+<!-- article metadata form -->
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Review Form</h3>
+    </div>
+    <div class="panel-body">
+        {% if rev_info %}
+            <div class="row">
+                <div class="col-sm-12" style="padding-bottom: 20px;">
+
+                	<br/>
+                	
+                	<div class="col-sm-6 padding-top">
+	                    Click on the files below to view and review associated with the submission
+                        <table>
+                        {% for artic in art_files %}
+                            <tr>
+                                <td>
+                                    <a href="{{ MEDIA_URL }}{{artic.file_path}}" class="art_file" target="_blank">{{artic.file_name}}</a>           
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </div>
+
+                    <div class="col-sm-6 padding-top">
+                        Click the link below to fill review form for this submission
+                        <button class="btn btn-default"> Review Form</button> 
+                    </div>
+
+		            <div class="col-sm-6 padding-top">
+                    	
+                   	</div>
+                    <div class="col-sm-12 padding-top">
+                        <button id="review_detail_btn" type="button" class="btn btn-success" onclick=""> Save Review </button>
+                    </div>
+
+                </div>
+                
+            </div>
+
+        {% else %}
+        	<div class="col-sm-12">
+        		Unable to retreive review details
+        	</div>
+        {% endif %}
+    </div>
+</div>
+{% block custom_scripts %}
+    
+    <script type="text/javascript">
+        $('a.art_file').zohoViewer();
+    </script>
+{% endblock custom_scripts %}

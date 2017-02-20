@@ -1,0 +1,79 @@
+{% load security %}
+
+{% if issue_select_form %}
+    {% include 'journals/assign_issue_modal.html' %}
+{% endif %}
+<table class="table table-striped">
+<thead>
+    <th> ID </th>
+	<th> Submission Title </th>
+	<!-- <th>Author</th> -->
+<!-- 	<td> Birth Date </td> -->
+	<th> Date Submitted</th>
+    {% if published %}
+        <th> Issue </th>   
+    {% endif %}
+    <th> Status </th>
+    <th> Action</th>
+</thead>
+<tbody>
+{% if jms_articles %}
+    <!-- /patient/{{admiss.patient.id|encrypts:"encrypt"}}/?module_name=admission 
+        /outpatient/patient/{{patientinfo.id}}/
+    -->
+{% for artic in jms_articles %}
+    <tr >
+        <td>{{ artic.id }}</td>
+    	<td> {{ artic.title|wordwrap:5  }} </td>
+        <!-- truncatewords:5  |wordcount -->
+        <!-- <td> {{artic.submitting_author.id}}</td> -->
+    	
+    	<td> {{artic.date_submitted|date}} </td>
+		{% if published %}
+			<td> {{artic.article_issue.title}} </td>   
+		{% endif %}
+        <td>
+            {% if artic.state == "ACC" or artic.state == "ACK" %}
+				Awaiting for Assignment
+            {% elif artic.state == "REV" %}
+                Reviewer Assigned/Awaiting for Decision
+            {% elif artic.state == "ED" %}
+                {% if not artic.article_issue %}
+
+                	No issue assigned <br /> 
+					<button class="btn btn-primary" id="select-issue-btn" onclick="view_select_issue('{{artic.id}}','{{artic.title}}' )">Select Issue</button>
+                {% else %}
+                	<button class="btn btn-primary">Publish</button>
+                {% endif %}
+            {% elif artic.state == "PUB" %}
+                Published - <b>Date: </b> {{artic.pub_date|date}} 
+            {% elif artic.state == "WITH" or artic.state == "DEC"  %}
+                Withdrawn
+            {% elif artic.state == "DEC"  %}
+                Rejected
+            {% elif artic.state == "UPUB"  %}
+                Rejected
+            {% endif %}
+        </td>
+        <td>
+        	<a class="btn btn-default" id="accept_submission" href="/joumsy/sub_info/{{artic.id|encrypts:"encrypt"}}/"><span class="fa fa-file-text" style="font-size: 1.7em;"></span> View Details</a>
+            {% if not artic|hasRevAssigned:"article" %}
+			<!-- 	| <a class="btn btn-info" id="accept_submission" href=""><span class="fa fa-user-plus" style="font-size: 1.7em;"></span> Assign Reviewer</a> -->
+			{% endif %}
+        </td>
+    </tr>
+{% endfor %}
+{% else %}
+	<tr>
+ 		<div class="col-md-12">
+    		<div class="alert alert-danger alert-outline alert-dismissible fade in">
+        		<button type="button" class="close" data-dismiss="alert">×</button>
+        		<h3 class="text-error">Currently no Unassigned submission.</h3> 
+        		<strong class="text-error"> No Submission has been done.</strong>
+    		</div>
+		</div>
+</tr>
+{% endif %}
+</tbody>
+</table>
+

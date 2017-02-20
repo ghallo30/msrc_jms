@@ -1,0 +1,30 @@
+{% load security %}
+
+<ul id="tab-submission" class="nav nav-tabs nav-tabs-v6">
+  
+  {% if art_info %}
+  <li class="{{art_meta}}" >
+    <a href="/articles/submission/{{art_info.id|encrypts:"encrypt"}}/">
+      <h4> <span class="icons icon-note"></span> Metadata</h4> 
+    </a>
+  </li>
+
+  <li class="{{art_auth}}">
+    <a href="/articles/submission/{{art_info.id|encrypts:"encrypt"}}/authors/" >
+      <h4><span class="icons icon-user-follow"></span> Authors</h4>
+    </a>
+  </li>
+      <!-- <li><a data-toggle="tab" href="#postponed">Postponed</a></li> -->
+  <li class="{{art_files}}">
+    <a href="/articles/submission/{{art_info.id|encrypts:"encrypt"}}/files/"  >
+     <h4> <span class="icon-docs"></span> Files</h4>
+    </a>
+  </li>
+  {% else %}
+  <li class="{{art_meta}}" >
+    <a href="/articles/new_submission/">
+      <h4> <span class="icons icon-note"></span> Metadata</h4> 
+    </a>
+  </li>
+  {% endif %}
+</ul>

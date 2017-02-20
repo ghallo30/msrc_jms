@@ -1,0 +1,16 @@
+{% extends 'journals/extend_base.html' %}
+
+{% load security %}
+
+{% block content %}
+<div id="content">
+	<div class="col-sm-12">
+	{% include 'journals/review_form_home.html' %}
+	</div>
+	
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script src="{{STATIC_URL}}js/journal.js"></script>
+{% endblock custom_scripts %}

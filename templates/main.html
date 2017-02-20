@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JPS| Home </title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/plugins/simple-line-icons.css"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/plugins/font-awesome.min.css"/>
+
+    <!-- <link rel="stylesheet" type="text/css" href="asset/css/plugins/select2.min.css"/> -->
+    <!-- NProgress 
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- Animate.css -->
+
+    <!-- Custom Theme Style -->
+    <link href="{{STATIC_URL}}css/jms-style.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/jms.css" rel="stylesheet">
+
+  </head>
+
+  <body class="login">
+    <!-- Navigation -->
+    {% include 'header_main.html' %}
+    <br>
+    <br>
+
+    <div class="container">
+    	<div class="col-sm-12 ">
+        <!-- Blog Entries Column -->
+			<div class="col-sm-8">
+				<!-- start: content -->
+				{% block content %}
+
+				{% endblock content %}
+				<!-- end: content -->
+			</div><!-- Blog Entries Column -->
+
+        <!-- side menu -->
+        	
+	        <div class="col-sm-4" >
+	        	<div class="col-sm-12">
+	        		<h4>Search Research:</h4>
+	        		<div class="input-group">
+	        			<input id="search_msrc_content" class="form-control" type="text" placeholder="search">
+	        			<div class="input-group-btn">
+	        				<button type="button" class="btn bg-red" style="color:#ffffff;" aria-label="Search" onclick="search_article()"><span class="fa fa-search"></span></button>
+	        			</div>
+	        		</div>
+	        		<div class="separator"></div>
+	        	</div><!-- search tool-->
+	        	<!-- {% if jms_issues %}
+
+		        	<div class="col-sm-12">
+		        		<h4>Search Issue</h4>
+		        		<select id="selectissue" class="form-control">
+							{% for x in jms_issues %}
+								<option value="{{x.id}}">{{x.title}} </option>
+							{% endfor %}
+						</select>
+		        	</div>
+		        	<div class="col-sm-12">
+		        		<div class="separator"></div>
+		        	</div>
+	        	{% endif %} -->
+	        	
+						{% if signin_form %}
+
+							<!-- login info  -->
+							<div class="row" ></div> 
+
+							<div class="col-sm-12">
+								<div class="login_wrapper_side">
+						            <div class="animate_login form login_form_side">
+						              <section class="login_content">
+
+						                <form id="jms_signin_form" action="/sign-in/" method="POST">
+
+							                {% csrf_token %}
+							                  <h1>Sign - In Form</h1>
+							                  <div class="padding-top">
+							                    
+							                    {{signin_form.username}}
+							                  </div>
+							                  <div class="padding-top">
+							                    {{signin_form.password}}
+							                  </div>
+							                  <div>
+							                    <button type="submit" class="btn btn bg-dark-blue-grey" ><b style="color: #fff;">Log in</b></button>
+							                    <a class="reset_pass" href="#">Lost your password?</a>
+							                  </div>
+
+							                  <div class="clearfix"></div>
+
+							                  <div class="separator">
+							                    <p class="change_link">New to site?
+							                      <a href="/sign-in/" class="to_register"> Create Account </a>
+							                    </p>
+
+							                    <div class="clearfix"></div>
+							                    <br />
+							                  </div>
+						                </form>
+						              </section>
+						            </div>
+								</div> <!-- login login wrapper  -->
+							</div> <!-- col-sm-12 -->
+	        			{% endif %}
+
+			</div><!-- col4 -->
+      		
+		</div> <!-- col-sm-12 -->
+			<!-- Footer -->
+    </div><!-- container -->
+
+    <hr/>
+    
+	    <div class="col-sm-12">
+			<footer>
+				<div class="col-sm-12 text-center">
+					
+					<h1><i class="icons icon-book-open"></i>MSU-Mamitua Saber Research Center JPS!</h1>
+					<p>©2016-2017 All Rights Reserved. MSRC-JPS is a journal publication management system.</p>
+				</div>
+					
+			</footer>
+		</div>
+		
+    <!-- start: Javascript -->
+    <script src="{{STATIC_URL}}js/jquery.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}js/jquery.PrintArea.js_4.js"></script>
+    
+    <script src="{{STATIC_URL}}js/home.js"></script>
+    {% block custom_scripts %}{% endblock custom_scripts %}
+    
+	 
+    <!-- end: javascript -->
+  </body>
+</html>

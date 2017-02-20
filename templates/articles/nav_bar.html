@@ -1,0 +1,28 @@
+ 
+
+<div class="panel">
+  <div class="panel-body">
+    <div class="col-md-12 col-sm-12">
+      <h3 class="animated fadeInLeft">{{request.user.first_name}} {{request.user.last_name}}</h3>
+      <p class="animated fadeInDown">
+        <span class="fa fa-map-marker"></span> 
+        <b>{{request.user.position_title}}</b>, at <b>{{request.user.department}}</b>
+      </p>
+      
+      <ul class="nav nav-tabs nav-tabs-v3">
+        <li class="{{submitted}}"><a href="/articles/submission-list/submitted/" >Submitted Article</a></li>
+        <li class="{{art_draft}}"><a href="/articles/submission-list/art_draft/" >Drafts</a></li>
+        <li class="{{on_review}}"><a href="/articles/submission-list/on_review/" >On Review</a></li>
+        <li class="{{published}}"><a href="/articles/submission-list/published/" >Published</a></li>
+        <li class="{{withdraw}}"><a href="/articles/submission-list/archives/" >Archived</a></li>
+      </ul>      
+
+      <!-- <ul class="nav navbar-nav ">
+        <li><a href="/articles/articles-list/" class="active bg-dark-yellow">Submitted Article</a></li>
+        <li><a href="/articles/draft-list/" class="{{art_draft}} black">Drafts</a></li>
+        <li><a href="" class="black">On Review</a></li>
+        <li><a href="" class="black">Published</a></li>
+      </ul> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<!-- article metadata form -->
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="padding-top">Submission Details</h3>
+    </div>
+    <div class="panel-body">
+		{% if art_info %}
+			<form id="art-meta-form" action="/articles/meta-update/"  method="POST" enctype="multipart/form-data">
+		{% else %}
+			<form id="art-meta-form" action="/articles/meta-save/"  method="POST" enctype="multipart/form-data">
+        
+    {% endif %}
+			{% csrf_token %}
+			<div class="row">
+					{% if art_info %}
+						<div class="col-sm-12" style="padding-bottom: 10px; padding-right: 40px;">
+							<button id="article_btn" type="submit" class="btn btn-lg btn-success pull-right" onclick="art_sub_form()"> <strong>Save</strong> </button>
+						</div>
+					{% else %}
+						<div class="col-sm-12" style="padding-bottom: 10px; ">
+							<button id="article_btn" type="submit" class="btn btn-lg btn-success pull-right" onclick="art_sub_form()"> Next </button>
+						</div>
+					{% endif %}
+
+			    <div class="col-sm-12" style="padding-bottom: 20px;">
+			        <div class="col-sm-12"><label>Title: *</label> {{meta_form.title}}</div>
+			    </div>
+			    <hr>
+			    
+			    <!-- <div class="col-sm-12" style="padding-bottom: 20px;">
+			        <div class="col-sm-12 padding-top" ><label>Journal *</label> {{meta_form.journal}}</div>
+			    </div> -->
+			    <input type="hidden" id="art_detail" name="art_detail" value="{{art_info.id}}" />
+			    <div class="col-sm-12">
+			        <div class="col-sm-8 padding-top"><label>Asbtract:</label> {{meta_form.abstract}}</div>
+			        <div class="col-sm-4 padding-top" >
+			            <!-- <div class="padding-top">                    
+			            <label>Category *</label> {{meta_form.category}}
+			            </div> -->
+			            <div class="padding-top">
+			            <label>Submission File: *</label> {{meta_form.main_file}}        
+			            </div>
+			            <div class="separator"></div>
+			            <div class="padding-top">
+			            <a href="/media/{{main_file.file_path}}"><i class="fa fa-file-text-o"></i> {{main_file.file_name}}</a>        
+			            </div>
+			            <!-- <div class="padding-top">
+			                <label>Keywords</label> {{meta_form.keywords}}
+			            </div> -->
+			        </div>
+			    </div>
+			    
+			    <hr>
+			    <div class="col-sm-12">
+			        
+			    </div>
+			    <div class="col-sm-12" style="padding-bottom: 20px;">
+			        <div class="col-sm-12"><label>References:</label> {{meta_form.references}}</div>
+			    </div>
+
+			</div>
+		</form>
+    </div>
+</div>
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{STATIC_URL}}js/ckeditor/ckeditor.js"></script>
+{% endblock custom_scripts %}

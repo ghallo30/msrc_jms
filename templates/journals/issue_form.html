@@ -1,0 +1,53 @@
+
+<div class="panel">
+    <div class="panel-body">
+    {% if jms_issue %}
+        <form id="issue-form" action="/joumsy/issues/update"  method="POST" enctype="multipart/form-data">
+    {% else %}
+        <form id="issue-form" action="/joumsy/issue/save/"  method="POST" enctype="multipart/form-data">     
+    {% endif %}
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12" style="padding-bottom: 10px;">
+                		<div class="col-sm-12" style="padding-bottom: 20px; float:right;">
+                    	<button class="btn btn-success" type="submit">Save</button>&nbsp;&nbsp;&nbsp;
+                    	<button class="btn btn-warning" type="reset">Cancel</button>
+                    </div>
+                    <div class="col-sm-6" style="padding-bottom: 20px;">
+                    	<div class="col-sm-4"><label>Title *</label></div>
+                      <div class="col-sm-8">{{issue_form.title}}</div>
+                    </div>
+                    <div class="col-sm-6" style="padding-bottom: 20px;">
+                    	<div class="col-sm-4"><label>Volume</label></div> 
+                    	<div class="col-sm-8">{{issue_form.issue_volume}}</div>
+                    </div>
+                    <div class="col-sm-6 padding-top">
+                    	<div class="col-sm-4"><label>Number</label></div>
+                    	<div class="col-sm-8">{{issue_form.issue_number}}</div>
+                    </div>
+                    <div class="col-sm-6 padding-top">
+                    	<div class="col-sm-4"><label>Year</label></div> 
+                    	<div class="col-sm-8">{{issue_form.issue_year}}</div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="padding-bottom: 20px;">
+									<div class="col-sm-8"><label>Description</label> {{issue_form.description}}</div>
+									<div class="col-sm-4">
+										<div class="col-sm-12 padding-0" style="padding-bottom: 20px;">
+											<label>Cover Photo</label> {{issue_form.cover_photo}}
+										</div>
+										<div class="col-sm-12 padding-0" style="padding-bottom: 20px;">
+											<label>Issue Issn</label> {{issue_form.printIssn}}
+										</div>
+
+									</div>	
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{STATIC_URL}}js/ckeditor/ckeditor.js"></script>
+{% endblock custom_scripts %}

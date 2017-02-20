@@ -1,0 +1,21 @@
+{% load security %}
+<div class="panel">
+  <div class="panel-body">
+    <div class="col-md-12 col-sm-12">
+      <h3 class="animated fadeInLeft">Author Name</h3>
+      <p class="animated fadeInDown"><span class="fa fa-map-marker"></span> Work, Institution </p>
+
+      <ul class="nav nav-tabs nav-tabs-v3">
+          
+          <li class="{{unassigned}}"><a href="/joumsy/submission/unassigned" >Unassigned <span class="badge bg-red">{{ state|num_submission:"unassigned"}}</span></a></li>
+          <li class="{{in_review}}"><a href="/joumsy/submission/in_review" > In Review <span class="badge bg-red">{{ state|num_submission:"on_review"}}</span></a></li>
+
+          <li class="{{for_publish}}"><a href="/joumsy/submission/for_publish" >In Editing <span class="badge bg-red">{{ state|num_submission:"on_edit"}}</span></a></li>
+          <li class="{{published}}"><a href="/joumsy/submission/published" >Published <span class="badge bg-red">{{ state|num_submission:"publish"}}</span></a></li>
+          <!-- archives are the articles that have been unpublished/withdrawn -->
+          <li class="{{archived}}"><a href="/joumsy/submission/archived" >Archived</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>

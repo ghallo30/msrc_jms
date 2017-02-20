@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="col-sm-12">
+	<hr>
+	{% for jms_issue in jms_issues %}
+	  <table class="table  table-striped table-hover">
+	      <tr> 
+	          <td>
+	              <a class="black" href="/msrc/issue/{{jms_issue.id}}/"><h2>{{jms_issue.title}}  Vol.{{jms_issue.issue_volume}} Num.{{jms_issues.issue_number}} Year- {{jms_issue.issue_year}} </h2></a>
+	              <p><i class="fa fa-clock-o"></i> Published on {{jms_issue.date_published|date}}</p>
+	              
+	              <p>{{jms_issue.description|safe|truncatewords:20}}</p>
+	              <!-- <a class="btn btn-primary" href="/msrc/issue/{{jms_issue.id}}/">View Content <i class="fa fa-angle-right"></i></a> -->
+	          </td>
+	      </tr>
+	  </table>
+	{% endfor %}
+	<!-- Pager -->
+	<ul class="pager">
+	    <!-- <li class="previous">
+	        <a class="black" href="#">&larr; Older</a>
+	    </li> -->
+	    <!-- <li class="next">
+	        <a class="black" href="#">More issue..   &rarr;</a>
+	    </li> -->
+	</ul>
+</div>
+{% endblock content %}
+

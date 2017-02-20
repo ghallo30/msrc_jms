@@ -1,0 +1,37 @@
+{% extends 'reviews/extend_base.html' %}  
+
+{% block content %}
+<!-- start: Content -->
+
+  <div id="content">
+     <div class="panel box-shadow-none content-header">
+          <div class="panel-body">
+            <div class="col-md-12">
+                <h3 class="animated fadeInLeft">Review</h3>
+            </div>
+          </div>
+      </div>
+      
+    <div id="art_submisson" class="col-md-12" style="background: #ffffff;">
+        {% include 'reviews/review_step.html' %}
+        <!-- <div id="tab-submission-content" class="tab-content tab-content-v6 col-md-12"> -->
+          <!-- <div role="tabpanel" class="tab-pane fade" id="art_details" aria-labelledby="art_details" > -->
+          {% if art_meta %}
+            {% include 'reviews/review_article_info.html' %}
+          <!-- </div> -->
+          {% elif art_rev_form %}
+          <!-- <div role="tabpanel" class="tab-pane fade active in" id="art_author" aria-labelledby="art_author"> -->
+            {% include 'reviews/review_form.html'%}
+          <!-- </div> -->
+          {% endif %}
+        <!-- </div> -->
+    </div>
+  </div>
+<!-- end: content -->
+
+{% endblock %}
+
+{% block custom_scripts %}
+	<script src="{{STATIC_URL}}js/review.js"></script>
+  
+{% endblock custom_scripts %}

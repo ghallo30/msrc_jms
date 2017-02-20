@@ -1,0 +1,81 @@
+{% load security %}
+
+<table class="table table-striped table-hover">
+<thead>
+    <th> ID </th>
+	<th> Title </th>
+	<!-- <th>Author</th> -->
+<!-- 	<td> Birth Date </td> -->
+	<th> Date Created </th>
+    <th> Status </th>
+    <th> Action </th>
+</thead>
+<tbody>
+{% if jms_articles %}
+    <!-- /patient/{{admiss.patient.id|encrypts:"encrypt"}}/?module_name=admission 
+        /outpatient/patient/{{patientinfo.id}}/
+    -->
+{% for artic in jms_articles %}
+    <tr >
+        <td>{{ artic.id }}</td>
+    	<td>
+            {% if not artic.is_submitted %}
+                <a  href="/articles/submission_info/{{artic.id|encrypts:"encrypt"}}/">{{ artic.title|truncatewords:5  }}</a>
+            {% else %}
+                <a  href="/articles/submission_info/{{artic.id|encrypts:"encrypt"}}/">{{ artic.title|wordwrap:5  }}</a>
+            {% endif %}
+        
+        </td>
+        <!-- truncatewords:5  |wordcount -->
+        <!-- <td> {{artic.submitting_author.id}}</td> -->
+    	
+    	<td> {{artic.date_created|date}} </td>
+        <!-- note you cannot modify article once subbmitted -->
+        <td>
+            {% if artic.state %}    
+                {% if artic.state == "ACC" %}
+                    Awaiting Assignment
+                {% elif artic.state == "DRT" %}
+                    Drafts
+                {% elif artic.state == "REV" %}
+                    Reviewer Assigned/Awaiting for Decision
+                {% elif artic.state == "PUB" %}
+                    Published
+                {% elif artic.state == "DEC" %}
+                    Withdrawn
+                {% elif artic.state == "WITH" %}
+                    Withdrawn
+                {% endif %}
+            {% else %}
+                Drafts
+            {% endif %}
+
+        </td>
+        <td>
+        {% if artic.is_submitted == False %}
+            <a href="/articles/submission_info/{{artic.id|encrypts:"encrypt"}}/" id="submit_article" class="btn btn-primary" onclick="">View Details</a> | <a href="/articles/submission/{{artic.id|encrypts:"encrypt"}}/" class="btn btn-default"> Update </a>
+        {% else %}
+            {% if artic.state %}
+                {% if artic.state == "ACC" %}
+                    Awaiting Assignment | <a href="/articles/submission_info/{{artic.id|encrypts:"encrypt"}}/" id="submit_article" class="btn btn-primary" onclick="">View Details</a>
+                {% endif %}
+            {% else %}
+                Drafts | <a href="/articles/submission_info/{{artic.id|encrypts:"encrypt"}}/" id="submit_article" class="btn btn-primary" onclick="">View Details</a>
+            {% endif %}
+        {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+{% else %}
+ <tr>
+<div class="col-md-12">
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h3 class="text-error">Oh Snap!</h3> 
+        <strong class="text-error"> No Submission has been done. Click on upper right button to submit one</strong>
+    </div>
+</div>
+</tr>
+{% endif %}
+</tbody>
+</table>

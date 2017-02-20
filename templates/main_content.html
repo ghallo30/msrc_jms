@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+{% block content %}
+	<div class="col-sm-12">
+	  <div class="img-responsive" align="center">
+	      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	          <!-- Indicators -->
+	          <ol class="carousel-indicators">
+	              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	          </ol>
+	          
+	          <!-- Wrapper for slides -->
+	          <div class="carousel-inner">
+	              <div class="item active" style="height: 350px; border: 2px solid #918c8c;">
+	                  <img src="/static/img/good.jpg" alt="..." style="width: 100%; height: 100%;">
+	                  <div class="carousel-caption" style="width: 100%; left: 0; bottom: 3px;">
+	                      <div class="caption" align="left" style="background-color: black; opacity: .7; border-radius: none; padding: 10px;">
+	                          <h2>MSRC Publications</h2>
+	                          <p>Article writing is good for you. Discover new ideas</p>                                 
+	                      </div>
+	                  </div>
+	              </div>
+	              <div class="item" style="height: 350px; border: 2px solid #918c8c;">
+	                  <img src="/static/img/upload_manunscript.jpg" alt="..." style="width: 100%; height: 100%;">
+	                  <div class="carousel-caption" style="width: 100%; left: 0; bottom: 3px;">
+	                      <div class="caption" align="left" style="background-color: black; opacity: .7; border-radius: none; padding: 10px; ">
+	                          <h2>Submit your Research!</h2>
+	                          <p>Submit your papers to have critical reviews, that would improve with your skills, gather new ideas, and discover the large benifits of sharing your ideas</p>                                       
+	                      </div>
+	                  </div>
+	              </div>
+	              <div class="item" style="height: 350px; border: 2px solid #918c8c;">
+	                  <img src="/static/img/create_article.jpg" alt="..." style="width: 100%; height: 100%;">
+	                  <div class="carousel-caption" style="width: 100%; left: 0; bottom: 3px;">
+	                      <div class="caption" align="left" style="background-color: black; opacity: .7; border-radius: none; padding: 10px; ">
+	                          <h2>MSRC Electronic Research Group</h2>
+	                          <p>Collaborate and discuss your research work in one place.</p> 
+	                      </div>
+	                  </div>
+	              </div>
+	              ...
+	          </div>
+	          
+	          <!-- Controls --><!-- 
+	          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	              <span class="glyphicon glyphicon-chevron-left"></span>
+	          </a>
+	          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	              <span class="glyphicon glyphicon-chevron-right"></span>
+	          </a> -->
+	      </div>
+	  </div>
+	</div>
+	<hr>
+	{% for jms_issue in jms_issues %}
+	  <table class="table  table-striped table-hover">
+	      <tr> 
+	          <td>
+	              <a class="black" href="/msrc/issue/{{jms_issue.id}}/"><h2>{{jms_issue.title}}  Vol.{{jms_issue.issue_volume}} Num.{{jms_issues.issue_number}} Year- {{jms_issue.issue_year}} </h2></a>
+	              <p><i class="fa fa-clock-o"></i> Published on {{jms_issue.date_published|date}}</p>
+	              
+	              <p>{{jms_issue.description|safe|truncatewords:20}}</p>
+	              <!-- <a class="btn btn-primary" href="/msrc/issue/{{jms_issue.id}}/">View Content <i class="fa fa-angle-right"></i></a> -->
+	          </td>
+	      </tr>
+	  </table>
+	{% endfor %}
+	<!-- Pager -->
+	<ul class="pager">
+	    <!-- <li class="previous">
+	        <a class="black" href="#">&larr; Older</a>
+	    </li> -->
+	    <li class="next">
+	        <a class="black" href="#">More issue..   &rarr;</a>
+	    </li>
+	</ul>
+{% endblock content %}

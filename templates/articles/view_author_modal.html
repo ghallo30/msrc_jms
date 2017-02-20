@@ -1,0 +1,57 @@
+{% load security %}
+
+<div class="modal fade" id="view-auth-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span class="fa fa-remove"></span><span class="sr-only"></span></button>
+        <h3 class="modal-title ">Article Author Form</h3>
+      </div>
+
+      <div class="modal-body">
+          <div class="row">
+            <div id="auth_details"></div>
+                <div class="col-sm-12">
+
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                       <label>Author's Name: </label>
+                       <div id="author_name" class="large-font"> {{author_details.author_name}}</div>
+                    </div>
+                    <hr>
+                    
+                    <div class="col-sm-12" style="padding-bottom: 20px;">
+                        <div class="col-sm-4 padding-top">
+                            <label>Position Title: </label> 
+                            <div id="author_position_title" class="large-font">{{author_details.position_title}}</div>
+                        </div>
+                        <div class="col-sm-8 padding-top">
+                            <label>Department: </label>  
+                            <div id="author_department" class="large-font">{{author_details.department}}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <label>Contacts Details:</label>
+                        <div class="separator"></div>
+                        <div class="col-sm-6 padding-top">
+                            <label>Contact Number: </label>
+                            <div id="author_contact_num" class="large-font"> {{author_details.contact_num}}</div>
+                        </div>
+                        <div class="col-sm-6 padding-top">
+                            <label>Email Address: </label>
+                            <div id="author_email_add" class="large-font">{{author_details.email_add}}</div>
+                        </div>
+                    </div>
+                </div>
+
+          </div>
+      </div> <!-- /.modal-body -->
+              
+      <div class="modal-footer"> <!-- modal footer-->
+        <button type="button" class="btn btn-default" data-dismiss="modal"><strong>Close</strong></button>
+      </div><!-- modal footer -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

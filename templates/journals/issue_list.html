@@ -1,0 +1,52 @@
+
+{% load security %}
+<div class="col-sm-12">
+    
+</div>
+
+<table class="table table-striped padding-top">
+<thead>
+	<th> Title </th>
+    <th> Cover Photo</th>
+    <th> Date Created</th>
+    <th> Published </th>
+    <th> Action</th>
+</thead>
+<tbody>
+{% if issues %}
+    <!-- /patient/{{admiss.patient.id|encrypts:"encrypt"}}/?module_name=admission 
+        /outpatient/patient/{{patientinfo.id}}/
+    -->
+{% for jms_issue in issues %}
+    <tr >
+    	<td> {{ jms_issue.title  }} </td>
+        <!-- truncatewords:5  |wordcount -->
+        <td> {{jms_issue.cover_photo}}</td>
+    	
+    	<td> {{jms_issue.date_created|date}} </td>
+
+        <td>
+            {% if jms_issue.is_published %}
+				Published
+            {% else %}
+                <button class="btn btn-primary" onclick="publish_issue('{{jms_issue.id}}', '{{jms_issue.title}}')"> Publish</button>
+            {% endif %}
+        </td>
+        <td>
+        	<a class="btn btn-default" id="accept_submission" href="/joumsy/issue_info/{{jms_issue.id}}/"><span class="fa fa-file-text" style="font-size: 1.7em;"></span> View Details</a>
+        </td>
+    </tr>
+{% endfor %}
+{% else %}
+	<tr>
+ 		<div class="col-md-12">
+    		<div class="alert alert-danger alert-outline alert-dismissible fade in">
+        		<button type="button" class="close" data-dismiss="alert">×</button>
+        		<h3 class="text-error">Empty list.</h3> 
+        		<strong class="text-error"> No Issue Createds.</strong>
+    		</div>
+		</div>
+</tr>
+{% endif %}
+</tbody>
+</table>

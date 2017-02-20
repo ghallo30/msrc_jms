@@ -1,0 +1,38 @@
+{% load security %}
+
+{% if not email_content %}
+  <div class="col-md-12 ">
+    Unable to retrieve Invite Reviewer Email Template.
+  </div>
+{% endif %}
+
+<div class="col-md-12">
+<!-- <form method="POST" id="jms_email_form" action="joumsy/send_email" enctype="multipart/form-data"> -->
+{% csrf_token %}
+    <div class="col-md-12 " style="padding:10px;">
+      <div class="col-md-12">
+        <div class="pull-right">
+          <button type="button" id="send_review_request" onclick="" class="btn btn-success">Send</button>
+          <button type="button" id="cancel_email_review_request" onclick="" class="btn btn-warning" >Cancel</button>
+          <button type="button" id="skip_email_review_request" onclick="send_reviewer_request('{{art_details|encrypts:"encrypt"}}', '{{to_user.id|encrypts:"encrypt"}}');" class="btn btn-default"  >Skip Email</button>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group padding-top">
+      <label class="col-sm-2 control-label text-right">To:</label>
+      <div class="col-sm-10"><input type="text" id="to_user" class="form-control border-bottom" value="{{to_user.email}}" placeholder="email address.."></div>
+    </div>
+    <div class="form-group padding-top">
+      <label class="col-sm-2 control-label text-right">Subject:</label>
+      <div class="col-sm-10"><input type="text" id="email_subject" class="form-control border-bottom" value="{{email_title  }}" placeholder="subject.."></div>
+    </div>
+    
+    <div class="form-group padding-top" ><label class="col-sm-2 control-label text-right">Content:</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="email_content" name="email_content" >{{email_content}}</textarea>
+        </div>
+      </div>
+<!-- </form> -->
+</div>
